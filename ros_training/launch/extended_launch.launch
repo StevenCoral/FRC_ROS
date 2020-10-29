@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- This file is just en example for including launch files -->
+
+
+<launch>
+
+	<group ns="fubar">
+		<param name="namespace_example4" value="44.4"/> <!-- will be in /fubar ns -->
+	    <node name="namespaced_publisher" pkg="ros_training" type="training_publisher.py"> <!-- Notice no slash in the end of the line! -->
+			<param name="namespaced_example5" value="55.5"/> <!-- will be in /fubar/namespaced_publisher ns -->
+		</node>
+		<node name="namespace_subscriber" pkg="ros_training" type="training_subscriber.py" output="screen"/>
+	</group>
+
+</launch>
+

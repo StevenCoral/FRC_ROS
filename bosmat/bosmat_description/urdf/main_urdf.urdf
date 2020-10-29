@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<robot name="myfirst" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <material name="metal">
+    <color rgba="0.2 0.5 0.8 1"/>
+  </material>
+
+
+  <material name="black">
+    <color rgba="0.2 0.5 0.8 1"/>
+  </material>
+
+
+  <link name="base_link">
+    <visual>
+        <origin xyz="-0.31 0.47 0" rpy="1.57 0 0" />
+        <geometry>
+            <mesh filename="package://bosmat_description/meshes/high_detail/base.STL" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="metal"/>
+    </visual>
+
+    <!-- <collision>
+      <origin xyz="-0.31 0.47 0" rpy="1.57 0 0" />
+      <geometry>
+          <mesh filename="package://my_lib/src/simulation/Full Robot Late night.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision> -->
+
+    <inertial>
+      <mass value="50.0"/>
+      <inertia ixx="1.0" iyy="1.0" izz="1.0" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+  </link>
+
+  <link name="left_center_wheel">
+    <visual>
+      <geometry>
+        <mesh filename="package://bosmat_description/meshes/high_detail/pneumatic_wheel.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+      <origin rpy="0 1.57076 0" xyz="0 0 0"/>
+      <material name="black"/>
+    </visual>
+
+  <inertial>
+    <mass value="0.5"/>
+    <inertia ixx="1.0" iyy="1.0" izz="1.0" ixy="0.0" ixz="0.0" iyz="0.0"/>
+  </inertial>
+</link>
+
+
+  <joint name="left_center_wheel_to_base_link" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_center_wheel"/>
+    <origin xyz="0.27 0 0.052" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+  </joint>
+
+  <link name="check_1">
+    <visual>
+      <geometry>
+        <mesh filename="package://bosmat_description/meshes/high_detail/tower_smooth.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="black"/>
+    </visual>
+
+  <inertial>
+    <mass value="0.5"/>
+    <inertia ixx="1.0" iyy="1.0" izz="1.0" ixy="0.0" ixz="0.0" iyz="0.0"/>
+  </inertial>
+</link>
+
+
+  <joint name="check_1_to_base_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="check_1"/>
+    <origin xyz="2 0 0" rpy="0 0 0"/>
+  </joint>
+
+<link name="check_2">
+    <visual>
+      <geometry>
+        <mesh filename="package://bosmat_description/meshes/high_detail/tower_cutout.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="black"/>
+    </visual>
+
+  <inertial>
+    <mass value="0.5"/>
+    <inertia ixx="1.0" iyy="1.0" izz="1.0" ixy="0.0" ixz="0.0" iyz="0.0"/>
+  </inertial>
+</link>
+
+
+  <joint name="check_2_to_base_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="check_2"/>
+    <origin xyz="4 0 0" rpy="0 0 0"/>
+  </joint>
+
+<link name="check_3">
+    <visual>
+      <geometry>
+        <mesh filename="package://bosmat_description/meshes/high_detail/shiri_assembly.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="black"/>
+    </visual>
+
+  <inertial>
+    <mass value="0.5"/>
+    <inertia ixx="1.0" iyy="1.0" izz="1.0" ixy="0.0" ixz="0.0" iyz="0.0"/>
+  </inertial>
+</link>
+
+
+  <joint name="check_3_to_base_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="check_3"/>
+    <origin xyz="6 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+
+</robot>

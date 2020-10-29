@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'base_to_driving_left_front', 'base_to_driving_left_rear', 'base_to_omni_left_front', 'base_to_omni_left_rear', 'base_to_omni_right_rear', 'base_to_omni_right_front', 'base_to_driving_right_rear', 'base_to_driving_right_front', 'main_body_to_intake', 'main_body_to_turret', ]

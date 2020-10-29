@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="kobe_description">
+
+	<link name="base_footprint"/>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="20.0" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/base_link.STL" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+	<joint name="footprint_to_base" type="fixed">
+    <origin xyz="0 0 0.025" rpy="0 0 1.5708" /> <!-- 0.025 is the height between the floor and bottom of drive (not real, but from model) -->
+    <parent link="base_footprint" />
+    <child link="base_link" />
+  </joint>
+
+  <link name="bumpers">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="2" />
+      <inertia
+        ixx="1"
+        ixy="0"
+        ixz="0"
+        iyy="1"
+        iyz="0"
+        izz="1" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.43 0.48 0" rpy="1.5708 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/bumpers.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 0.6" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/bumpers.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_bumpers" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="bumpers" />
+  </joint>
+
+  <link name="wheel_driving_left_front">
+    <inertial>
+      <origin xyz="-0.015 0 0" rpy="0 0 0" />
+      <mass value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.015 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+      <material name="yellow">
+        <color rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.01 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_driving_left_front" type="continuous">
+    <origin xyz="0.32 -0.08 0.05" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_driving_left_front" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="wheel_driving_left_rear">
+    <inertial>
+      <origin xyz="-0.015 0 0" rpy="0 0 0" />
+      <mass value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.015 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_driving_left_rear" type="continuous">
+    <origin xyz="0.32 0.08 0.05" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_driving_left_rear" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="wheel_omni_left_front">
+    <inertial>
+      <origin xyz="-0.01 0 0" rpy="0 0 0" />
+      <mass value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.01 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_to_omni_left_front"
+    type="continuous">
+    <origin xyz="0.32 -0.28 0.05" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_omni_left_front" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="wheel_omni_left_rear">
+    <inertial>
+      <origin
+        xyz="-0.01 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.01 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_to_omni_left_rear"
+    type="continuous">
+    <origin
+      xyz="0.32 0.28 0.05"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_omni_left_rear" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="wheel_omni_right_rear">
+    <inertial>
+      <origin
+        xyz="-0.01 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.01 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_to_omni_right_rear"
+    type="continuous">
+    <origin
+      xyz="-0.32 0.28 0.05"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_omni_right_rear" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="wheel_omni_right_front">
+    <inertial>
+      <origin
+        xyz="-0.01 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.01 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_omni.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_to_omni_right_front"
+    type="continuous">
+    <origin
+      xyz="-0.32 -0.28 0.05"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_omni_right_front" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="wheel_driving_right_rear">
+    <inertial>
+      <origin
+        xyz="-0.015 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_to_driving_right_rear"
+    type="continuous">
+    <origin
+      xyz="-0.32 0.08 0.05"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_driving_right_rear" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="wheel_driving_right_front">
+    <inertial>
+      <origin
+        xyz="-0.015 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.32" />
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.015 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/wheel_driving.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_to_driving_right_front"
+    type="continuous">
+    <origin
+      xyz="-0.32 -0.08 0.05"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_driving_right_front" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="main_body">
+    <inertial>
+      <origin
+        xyz="0 0.155 -0.02"
+        rpy="0 0 0" />
+      <mass
+        value="20.0" />
+      <inertia
+        ixx="2"
+        ixy="0"
+        ixz="0"
+        iyy="4"
+        iyz="0"
+        izz="2.5" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/main_body.STL" />
+      </geometry>
+      <material
+        name="cyan">
+        <color
+          rgba="0 1 1 0.6" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/main_body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_to_main_body"
+    type="fixed">
+    <origin
+      xyz="0 0.03 0.128"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="main_body" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="intake">
+    <inertial>
+      <origin
+        xyz="0 -0.070103 0.25029"
+        rpy="0 0 0" />
+      <mass
+        value="5" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/intake.STL" />
+      </geometry>
+      <material
+        name="green">
+        <color
+          rgba="0 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/intake.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="main_body_to_intake"
+    type="prismatic">
+    <origin
+      xyz="0 0.25486 0.06829"
+      rpy="0 0 0" />
+    <parent
+      link="main_body" />
+    <child
+      link="intake" />
+    <axis
+      xyz="0 0.25882 -0.96593" />
+    <limit
+      lower="-0.28"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+  <link
+    name="turret">
+    <inertial>
+      <origin
+        xyz="0 0.1 0.03"
+        rpy="0 0 0" />
+      <mass
+        value="3.739" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/turret.STL" />
+      </geometry>
+      <material
+        name="magenta">
+        <color
+          rgba="1 0 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kobe_description/meshes/turret.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="main_body_to_turret"
+    type="continuous">
+    <origin
+      xyz="0 0.28 -0.17"
+      rpy="0 0.022765 0" />
+    <parent
+      link="main_body" />
+    <child
+      link="turret" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+	<link name="reflective_camera"/>    
+  <joint
+    name="turret_to_camera"
+    type="fixed">
+    <origin
+      xyz="0 0.15 0.25"
+      rpy="-2.705 3.1416 0" />
+    <parent
+      link="turret" />
+    <child
+      link="reflective_camera" />
+  </joint>
+
+</robot>

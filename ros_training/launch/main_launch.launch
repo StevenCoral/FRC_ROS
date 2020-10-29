@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- This file is main file needed to be launched for training -->
+
+
+<launch>
+	<!-- arguments can be passed through roslaunch command -->	
+	<arg name="amplitude" type="float" default="12.3" /> <!-- predefeine the amplitude parameter -->
+	<arg name="example" default="11.1" /> 
+	<arg name="my_boolean" default="false" /> <!-- can be used as a condition for executing lines  -->
+
+	<param name="namespace_example1" value="$(arg example)"/> <!-- will be in base ns -->
+	<param name="/fubar/namespace_example2" value="$(arg example)*2"/> <!-- will be in /fubar ns -->
+	
+	<node name="base_publisher" pkg="ros_training" type="training_publisher.py"/> <!-- will be in base ns. DONT FORGET .PY -->
+	<node name="base_subscriber" pkg="ros_training" type="training_subscriber.py" output="screen"> <!-- Notice no slash in the end of the line! -->
+		<param name="namespace_example3" value="33.3"/> <!-- will be in /base_subscriber ns -->
+	</node>
+
+	<include file="$(find ros_training)/launch/extended_launch.launch" if="$(arg my_boolean)"/>
+
+</launch>
+
